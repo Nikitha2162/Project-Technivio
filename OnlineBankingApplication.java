@@ -1,14 +1,19 @@
+package com.example.onlinebanking.service;
 
-1. OnlineBankingApplication.java
+import com.example.onlinebanking.model.Customer;
+import org.springframework.stereotype.Service;
+import java.util.*;
 
-package com.example.onlinebanking;
+@Service
+public class CustomerService {
+    private final Map<Integer, Customer> customerMap = new HashMap<>();
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+    public List<Customer> getAllCustomers() {
+        return new ArrayList<>(customerMap.values());
+    }
 
-@SpringBootApplication
-public class OnlineBankingApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(OnlineBankingApplication.class, args);
+    public Customer addCustomer(Customer customer) {
+        customerMap.put(customer.getId(), customer);
+        return customer;
     }
 }
